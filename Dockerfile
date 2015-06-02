@@ -2,6 +2,8 @@ FROM debian:jessie
 
 MAINTAINER Joeri Verdeyen <joeriv@yappa.be>
 
+ENV DOCUMENT_ROOT /var/www/app/html
+
 RUN \
   apt-get update && \
   apt-get install -y apache2 && \
@@ -35,6 +37,7 @@ RUN echo Europe/Brussels > /etc/timezone && dpkg-reconfigure --frontend noninter
 RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
 COPY default.conf /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's/$DOCUMENT_ROOT/${DOCUMENT_ROOT}/g' /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
 

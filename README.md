@@ -12,4 +12,10 @@ Add the following to your docker-compose.yml file:
         - php
     volumes_from:
         - app
+    environment:
+        DOCUMENT_ROOT: /var/www/app/html
 ```
+
+## ENV vars
+
+* DOCUMENT_ROOT defaults to /var/www/app/html
