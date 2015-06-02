@@ -13,9 +13,11 @@ Add the following to your docker-compose.yml file:
     volumes_from:
         - app
     environment:
-        DOCUMENT_ROOT: /var/www/app/html
+        DOCUMENT_ROOT: /var/www/app/web
+        PHP_FPM_SOCKET: php:9000
 ```
 
 ## ENV vars
 
-* DOCUMENT_ROOT defaults to /var/www/app/html
+* DOCUMENT_ROOT defaults to /var/www/app/web
+* PHP_FPM_SOCKET defaults to php:9000
