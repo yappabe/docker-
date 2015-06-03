@@ -37,9 +37,11 @@ RUN echo Europe/Brussels > /etc/timezone && dpkg-reconfigure --frontend noninter
 RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
 COPY default.conf /etc/apache2/sites-available/000-default.conf
-RUN  sed -i "s|DOCUMENT_ROOT|$DOCUMENT_ROOT|g" /etc/apache2/sites-available/000-default.conf && \
-     sed -i "s|PHP_FPM_SOCKET|$PHP_FPM_SOCKET|g" /etc/apache2/sites-available/000-default.conf
+
+COPY run.sh run.sh
+
+RUN chmod +x run.sh
 
 EXPOSE 80
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+CMD ./run.sh
