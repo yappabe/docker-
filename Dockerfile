@@ -38,10 +38,10 @@ RUN ln -sf /dev/stderr /var/log/apache2/error.log
 
 COPY default.conf /etc/apache2/sites-available/000-default.conf
 
-COPY run.sh run.sh
+COPY run.sh /run.sh
 
 RUN chmod +x run.sh
 
 EXPOSE 80
 
-CMD ["./run.sh"]
+ENTRYPOINT ["/bin/bash", "/run.sh"]
